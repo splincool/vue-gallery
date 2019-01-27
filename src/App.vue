@@ -1,12 +1,12 @@
 <template>
   <b-container class="bv-example-row">
-    <b-row>
+    <b-row class="mb-3">
       <b-col>
         <SearchBar />
       </b-col>
     </b-row>
-    <b-row>
-      <b-col>
+    <b-row class="mb-3">
+      <b-col class="text-center">
         <AddImageBlock />
       </b-col>
     </b-row>

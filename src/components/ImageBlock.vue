@@ -1,13 +1,16 @@
 <template>
   <div class="image-box">
-    <img src="" />
-    <p>test</p>
+    <img :src="_image.dataUrl" />
+    <p>{{_image.name}}</p>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'ImageBlock'
+  name: 'ImageBlock',
+  props: {
+    _image: Object
+  }
 }
 </script>
 
