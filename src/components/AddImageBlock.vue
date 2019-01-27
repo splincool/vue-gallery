@@ -16,7 +16,10 @@
               outputFormat="verbose"
               @input="setImage"
             >
-              <label for="fileInput" slot="upload-label">
+              <label 
+                for="fileInput" 
+                slot="upload-label"
+                class="fileinput-label">
                 <figure>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -101,5 +104,11 @@ export default {
 <style>
 #fileInput {
   display: none;
+}
+.img-preview {
+   width: 100%;
+}
+.fileinput-label {
+  display: block;
 }
 </style>
