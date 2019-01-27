@@ -6,6 +6,7 @@
         <b-row class="mb-2 text-center">
           <b-col>
             <image-uploader
+              :key="uploaderKey"
               :preview="true"
               :className="['fileinput', { 'fileinput--loaded': hasImage }]"
               capture="environment"
@@ -65,7 +66,6 @@
         </b-btn>
       </div>
     </b-modal>
-    {{image}}
   </div>
 </template>
 
@@ -75,6 +75,7 @@ export default {
   name: 'AddImageBlock',
   data () {
     return {
+      uploaderKey: 0,
       imageSrc: null,
       image: null,
       hasImage: false,
@@ -89,11 +90,11 @@ export default {
     },
     saveImage () {
       this.$store.commit('saveImage', this.image)
+      this.uploaderKey = Math.random()
+      this.hasImage = false;
+      this.image= null
     }
-  },
-  components: {
-    // PictureInput
-  },
+  }
 }
 </script>
 

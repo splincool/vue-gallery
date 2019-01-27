@@ -1,5 +1,5 @@
 <template>
-  <div class="image-box">
+  <div class="image-box text-center">
     <img :src="_image.dataUrl" />
     <p>{{_image.name}}</p>
   </div>
@@ -15,5 +15,8 @@ export default {
 </script>
 
 <style>
-
+.image-box img {
+  width: 300px;
+  height: 200px;
+}
 </style>
