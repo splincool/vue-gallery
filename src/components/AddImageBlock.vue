@@ -20,22 +20,10 @@
                 for="fileInput" 
                 slot="upload-label"
                 class="fileinput-label">
-                <figure>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="32"
-                    height="32"
-                    viewBox="0 0 32 32"
-                  >
-                    <path
-                      class="path1"
-                      d="M9.5 19c0 3.59 2.91 6.5 6.5 6.5s6.5-2.91 6.5-6.5-2.91-6.5-6.5-6.5-6.5 2.91-6.5 6.5zM30 8h-7c-0.5-2-1-4-3-4h-8c-2 0-2.5 2-3 4h-7c-1.1 0-2 0.9-2 2v18c0 1.1 0.9 2 2 2h28c1.1 0 2-0.9 2-2v-18c0-1.1-0.9-2-2-2zM16 27.875c-4.902 0-8.875-3.973-8.875-8.875s3.973-8.875 8.875-8.875c4.902 0 8.875 3.973 8.875 8.875s-3.973 8.875-8.875 8.875zM30 14h-4v-2h4v2z"
-                    ></path>
-                  </svg>
-                </figure>
-                <span class="upload-caption">{{
-                  hasImage ? "Изменить" : "Нажать для выбора изображения"
-                }}</span>
+                <div class="upload-caption">
+                  <span v-if="hasImage">Изменить изображение</span>
+                  <span v-else>Добавить изображение</span>
+                </div>
               </label>
             </image-uploader>
           </b-col>
@@ -58,7 +46,7 @@
           v-if="hasImage"
           class="mb-1 text-center">
           <b-col>
-            <b-btn @click="saveImage">Сохранить</b-btn>
+            <b-btn @click="saveImage" variant="success">Сохранить</b-btn>
           </b-col>
         </b-row> 
       </b-container>
@@ -90,12 +78,14 @@ export default {
     setImage (output) {
       this.hasImage = true;
       this.image = output;
+      this.image.id = Math.floor(Math.random() * 10000);
     },
     saveImage () {
       this.$store.commit('saveImage', this.image)
       this.uploaderKey = Math.random()
       this.hasImage = false;
       this.image= null
+      this.show = false
     }
   }
 }
@@ -110,5 +100,15 @@ export default {
 }
 .fileinput-label {
   display: block;
+  margin-top: 10px;
+}
+.upload-caption span {
+  cursor: pointer;
+  color: #fff;
+  background-color: #6c757d;
+  border-color: #6c757d;
+  border-radius: 4px;
+  padding: 0.375rem 0.75rem;
+  display: inline-block;
 }
 </style>

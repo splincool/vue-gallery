@@ -7,24 +7,39 @@ export default new Vuex.Store({
   state: {
     images: [
       { 
-        "dataUrl": 'https://picsum.photos/300/200?image=0',
-        "name": "Laptop"
+        id: 0,
+        dataUrl: 'https://picsum.photos/300/200?image=0',
+        name: "Laptop"
       },
       { 
-        "dataUrl": 'https://picsum.photos/300/200?image=10',
-        "name": "Nature"
+        id: 1,
+        dataUrl: 'https://picsum.photos/300/200?image=10',
+        name: "Nature"
       },
       { 
-        "dataUrl": 'https://picsum.photos/300/200?image=22',
-        "name": "Man"
+        id: 2,
+        dataUrl: 'https://picsum.photos/300/200?image=22',
+        name: "Man"
       },
       { 
-        "dataUrl": 'https://picsum.photos/300/200?image=15',
-        "name": "Stones"
+        id: 3,
+        dataUrl: 'https://picsum.photos/300/200?image=15',
+        name: "Stones"
       },
       { 
-        "dataUrl": 'https://picsum.photos/300/200?image=18',
-        "name": "Green"
+        id: 4,
+        dataUrl: 'https://picsum.photos/300/200?image=18',
+        name: "Green"
+      },
+      { 
+        id: 5,
+        dataUrl: 'https://picsum.photos/300/200?image=43',
+        name: "City"
+      },
+      { 
+        id: 6,
+        dataUrl: 'https://picsum.photos/300/200?image=54',
+        name: "Clouds"
       }
     ],
     searchField: ''
@@ -35,6 +50,9 @@ export default new Vuex.Store({
     },
     setSearchField (state, value) {
       state.searchField = value
+    },
+    changeImageName (state, payload) {
+      state.images[payload.imageIndex] = payload.image
     }
   },
   getters: {
@@ -42,9 +60,25 @@ export default new Vuex.Store({
       return state.images.filter(image => {
         return image.name.toLowerCase().includes(state.searchField.toLowerCase())
       })
+    },
+    getImage: (state) => (id) => {
+      return state.images.find(image => image.id === id)
     }
   },
   actions: {
-
+    changeImageData ({ commit, state }, payload) {
+      var imageIndex = null
+      state.images.find((image, index) => {
+        if (image.id === payload.image.id) {
+          imageIndex = index
+        }
+      })
+      if (imageIndex != null) {
+        commit('changeImageName', {
+          imageIndex,
+          image: payload.image
+        })
+      }
+    }
   }
 })

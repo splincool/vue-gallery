@@ -10,7 +10,10 @@
             class="mr-3 search-count">
             Найдено: {{getImages.length}}
           </span>
-          <b-form-input @input="updateSearch" size="sm" class="mr-sm-2" type="text" placeholder="Search"/>
+          <b-form-input 
+            @input="updateSearch" 
+            size="sm" class="mr-sm-2" 
+            type="text" placeholder="Search"/>
         </b-nav-form>
       </b-navbar-nav>
     </b-collapse>

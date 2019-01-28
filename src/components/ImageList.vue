@@ -1,8 +1,8 @@
 <template>
-  <b-row class="image-list">
+  <b-row align-h="center" class="image-list">
     <b-col sm="auto"
-      v-for="(image, index) in getImages" 
-      :key="index">
+      v-for="image in getImages" 
+      :key="image.id">
       <ImageBlock 
         :_image="image"
       />
