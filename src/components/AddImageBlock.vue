@@ -78,7 +78,7 @@ export default {
     setImage (output) {
       this.hasImage = true;
       this.image = output;
-      this.image.id = Math.floor(Math.random() * 10000);
+      this.image.id = Date.now();
     },
     saveImage () {
       this.$store.commit('saveImage', this.image)
